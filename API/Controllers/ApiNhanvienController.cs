@@ -72,7 +72,7 @@ namespace Mini_Project_v1.Controllers
         }
 
         //get nhân viên khi có id
-        public IHttpActionResult NhanvienById(string id)//lấy nhân viên
+        public IHttpActionResult GetNhanvienById(string id)//lấy nhân viên
         {
             var nhanviens = db.Nhanviens.Include(a => a.XepLoaiNV);//chỉ cần include tất cả các bảng ra là có thể truy vấn hết trong for each
             Nhanvien emp = null;
