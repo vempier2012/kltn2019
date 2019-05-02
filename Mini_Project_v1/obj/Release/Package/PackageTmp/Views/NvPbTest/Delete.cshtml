@@ -1,0 +1,52 @@
+﻿@model Mini_Project_v1.Models.NhanViensPhongBan
+
+@{
+    ViewBag.Title = "Xóa";
+}
+
+
+<h3>Bạn có chắc chắn rằng bạn muốn xóa?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Nhân viên")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNV)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Phòng ban")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaPB)
+        </dd>
+        <dt>
+            @Html.DisplayName("Mô tả")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Describe)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mã chức vụ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaChucVu)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-info" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>

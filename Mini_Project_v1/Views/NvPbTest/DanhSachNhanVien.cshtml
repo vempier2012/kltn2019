@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Mini_Project_v1.Models.Nhanvien>
+
+@{
+    ViewBag.Title = "Danh sách nhân viên trong phòng ban";
+}
+
+<h2>Danh sách nhân viên</h2>
+
+<p>
+    @*@Html.ActionLink("Xem danh sách nhân viên", "DanhSachNhanVien", new { Controller = "NvPbTest", action = "DanhSachNhanVien", id = Model.MaPB })*@
+</p>
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class=" input-group-text">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+        <input type="text" class="form-control" id="Search" placeholder="Search...">
+    </div>
+</div>
+<table class="table text-center">
+    <tr>
+        <th>
+            @Html.DisplayName("Họ")
+        </th>
+        <th>
+            @Html.DisplayName("Tên")
+        </th>
+        <th>
+            @Html.DisplayName("Ngày sinh")
+        </th>
+        <th>
+            @Html.DisplayName("Giới tính")
+        </th>
+        <th>
+            @Html.DisplayName("CMND")
+        </th>
+        <th>
+            @Html.DisplayName("SĐT")
+        </th>
+        <th>
+            @Html.DisplayName("Mã loại NV")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="Search">
+            <td>
+                @Html.DisplayFor(modelItem => item.Ho)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgaySinh)@*, "", new { @Value = item.NgaySinh.ToShortDateString() }*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CMND)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaLoaiNV)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDNV }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDNV })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Quay lại danh sách", "Index", new { Controller = "PhongBanTest", action = "Index" })
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            function Contains(t1, t2) {
+                if (t1.indexOf(t2) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchtext = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+}

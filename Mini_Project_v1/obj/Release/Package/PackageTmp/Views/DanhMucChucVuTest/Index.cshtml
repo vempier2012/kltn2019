@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Mini_Project_v1.Models.DanhMucChucVu>
+
+@{
+    ViewBag.Title = "Danh sách danh mục";
+}
+
+<h2>Danh sách danh mục</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class=" input-group-text">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+        <input type="text" class="form-control" id="Search" placeholder="Search...">
+    </div>
+</div>
+<table class="table text-center">
+    <tr>
+        <th>
+            @Html.DisplayName("Mã chức vụ")
+        </th>
+        <th>
+            @Html.DisplayName("Tên chức vụ")
+        </th>
+        <th>
+            @Html.DisplayName("Mô tả")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="Search">
+            <td>
+                @Html.DisplayFor(modelItem => item.MaChucVu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenChucVu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoTa)
+            </td>
+            <td>
+                @Html.ActionLink("Thay đổi thông tin", "Edit", new { id = item.MaChucVu }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaChucVu })
+            </td>
+        </tr>
+    }
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            function Contains(t1, t2) {
+                if (t1.indexOf(t2) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchtext = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+}

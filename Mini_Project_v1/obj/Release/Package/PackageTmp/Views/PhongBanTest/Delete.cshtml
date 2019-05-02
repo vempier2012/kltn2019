@@ -1,0 +1,47 @@
+﻿@model Mini_Project_v1.Models.PhongBan
+
+@{
+    ViewBag.Title = "Xóa phòng ban";
+}
+
+<h2>Xóa phòng ban</h2>
+
+<h3>Bạn có chắc chằn rằng bạn muốn xóa không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên phòng ban")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenPB)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Địa điểm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaDiem)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("SĐT")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-info" /> |
+            @Html.ActionLink("Quay lịa danh sách", "Index")
+        </div>
+    }
+</div>

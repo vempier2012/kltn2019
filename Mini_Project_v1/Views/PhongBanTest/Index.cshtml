@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Mini_Project_v1.Models.PhongBan>
+
+@{
+    ViewBag.Title = "Danh sách phòng ban";
+}
+
+<h2>Danh sách phòng ban</h2>
+
+<p>
+    @Html.ActionLink("Thêm phòng ban", "Create")  |
+    @Html.ActionLink("Thêm nhân viên vào phòng ban", "Create", new { Controller = "NvPbTest", action = "Create" })
+</p>
+<div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class=" input-group-text">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+        <input type="text" class="form-control" id="Search" placeholder="Search...">
+    </div>
+</div>
+<table class="table text-center">
+    <tr>
+        <th>
+            @Html.DisplayName("Tên phòng ban")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Địa điểm")
+        </th>
+        <th class="text-center">
+            @Html.DisplayName("Số điện thoại")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="Search">
+            <td>
+                @Html.DisplayFor(modelItem => item.TenPB)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.DiaDiem)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td class="text-center">
+                @Html.ActionLink("Xem danh sách nhân viên", "DanhSachNhanVien", new { Controller = "NvPbTest", action = "DanhSachNhanVien", id = item.MaPB }) |
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaPB }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaPB })
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            function Contains(t1, t2) {
+                if (t1.indexOf(t2) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchtext = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase(), searchtext)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+    </script>
+}

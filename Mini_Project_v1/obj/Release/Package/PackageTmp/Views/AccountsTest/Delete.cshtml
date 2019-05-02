@@ -1,0 +1,63 @@
+﻿@model Mini_Project_v1.Models.Account
+
+@{
+    ViewBag.Title = "Xóa tài khoản";
+}
+
+<h2>Xóa tài khoản</h2>
+
+<h3>Bạn có chắc chắn rằng bạn muốn xóa?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNV)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tài khoản")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Taikhoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mật khẩu")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matkhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-info" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>

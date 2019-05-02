@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MiniProject1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="MiniProject1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Accounts" EntityType="MiniProject1Model.Account" />
+    <EntitySet Name="Nhanviens" EntityType="MiniProject1Model.Nhanvien" />
+    <EntitySet Name="PhongBans" EntityType="MiniProject1Model.PhongBan" />
+    <EntitySet Name="XepLoaiNVs" EntityType="MiniProject1Model.XepLoaiNV" />
+    <AssociationSet Name="FK__Account__IDNV__440B1D61" Association="MiniProject1Model.FK__Account__IDNV__440B1D61">
+      <End Role="Nhanvien" EntitySet="Nhanviens" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nhanvien__MaLoai__3B75D760" Association="MiniProject1Model.FK__Nhanvien__MaLoai__3B75D760">
+      <End Role="XepLoaiNV" EntitySet="XepLoaiNVs" />
+      <End Role="Nhanvien" EntitySet="Nhanviens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Nhanvien__MaPB__3C69FB99" Association="MiniProject1Model.FK__Nhanvien__MaPB__3C69FB99">
+      <End Role="PhongBan" EntitySet="PhongBans" />
+      <End Role="Nhanvien" EntitySet="Nhanviens" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="IDA" />
+    </Key>
+    <Property Name="IDA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IDNV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Taikhoan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Matkhau" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Nhanvien" Relationship="MiniProject1Model.FK__Account__IDNV__440B1D61" FromRole="Account" ToRole="Nhanvien" />
+  </EntityType>
+  <EntityType Name="Nhanvien">
+    <Key>
+      <PropertyRef Name="IDNV" />
+    </Key>
+    <Property Name="IDNV" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Ho" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="DanToc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MaLoaiNV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MaPB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Accounts" Relationship="MiniProject1Model.FK__Account__IDNV__440B1D61" FromRole="Nhanvien" ToRole="Account" />
+    <NavigationProperty Name="XepLoaiNV" Relationship="MiniProject1Model.FK__Nhanvien__MaLoai__3B75D760" FromRole="Nhanvien" ToRole="XepLoaiNV" />
+    <NavigationProperty Name="PhongBan" Relationship="MiniProject1Model.FK__Nhanvien__MaPB__3C69FB99" FromRole="Nhanvien" ToRole="PhongBan" />
+  </EntityType>
+  <EntityType Name="PhongBan">
+    <Key>
+      <PropertyRef Name="MaPB" />
+    </Key>
+    <Property Name="MaPB" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TenPB" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DiaDiem" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Nhanviens" Relationship="MiniProject1Model.FK__Nhanvien__MaPB__3C69FB99" FromRole="PhongBan" ToRole="Nhanvien" />
+  </EntityType>
+  <EntityType Name="XepLoaiNV">
+    <Key>
+      <PropertyRef Name="MaLoaiNV" />
+    </Key>
+    <Property Name="MaLoaiNV" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TenLoaiNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Nhanviens" Relationship="MiniProject1Model.FK__Nhanvien__MaLoai__3B75D760" FromRole="XepLoaiNV" ToRole="Nhanvien" />
+  </EntityType>
+  <Association Name="FK__Account__IDNV__440B1D61">
+    <End Type="MiniProject1Model.Nhanvien" Role="Nhanvien" Multiplicity="0..1" />
+    <End Type="MiniProject1Model.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nhanvien">
+        <PropertyRef Name="IDNV" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="IDNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nhanvien__MaLoai__3B75D760">
+    <End Type="MiniProject1Model.XepLoaiNV" Role="XepLoaiNV" Multiplicity="0..1" />
+    <End Type="MiniProject1Model.Nhanvien" Role="Nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="XepLoaiNV">
+        <PropertyRef Name="MaLoaiNV" />
+      </Principal>
+      <Dependent Role="Nhanvien">
+        <PropertyRef Name="MaLoaiNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Nhanvien__MaPB__3C69FB99">
+    <End Type="MiniProject1Model.PhongBan" Role="PhongBan" Multiplicity="0..1" />
+    <End Type="MiniProject1Model.Nhanvien" Role="Nhanvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhongBan">
+        <PropertyRef Name="MaPB" />
+      </Principal>
+      <Dependent Role="Nhanvien">
+        <PropertyRef Name="MaPB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,39 @@
+﻿@model Mini_Project_v1.Models.DanhMucChucVu
+
+@{
+    ViewBag.Title = "Xóa danh mục";
+}
+
+<h2>Xóa danh mục</h2>
+
+<h3>Bạn có chắc chắn rằng bạn muốn xóa nó chứ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Tên chức vụ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenChucVu)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mô tả")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-info" /> |
+            @Html.ActionLink("Quay trở lại danh sách", "Index")
+        </div>
+    }
+</div>

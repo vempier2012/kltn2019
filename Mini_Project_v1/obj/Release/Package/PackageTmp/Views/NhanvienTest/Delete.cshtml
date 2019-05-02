@@ -1,0 +1,79 @@
+﻿@model Mini_Project_v1.Models.Nhanvien
+
+@{
+    ViewBag.Title = "Xóa nhân viên";
+}
+
+<h2>Xóa nhân viên</h2>
+
+<h3>Bạn có chắc chắn rằng bạn muốn xóa không?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Họ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ho)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tên")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày sinh")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Giới tính")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("CMND")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CMND)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("SĐT")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mã loại nhân viên")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaLoaiNV)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-info" /> |
+            @Html.ActionLink("Quay lại danh sách", "Index")
+        </div>
+    }
+</div>

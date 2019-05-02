@@ -1,0 +1,41 @@
+﻿@model Mini_Project_v1.Models.Nhanvien
+
+@{
+    ViewBag.Title = "Trangchu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-6">
+        <div class="card" style="max-width: 600px; margin: 0; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            @*canh thẻ vào giữa*@
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="~/Content/avatar3.png" class="card-img align-content-lg-center" alt="..." style="width:100%; height: 100%">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
+                        <p class="card-text"><b>Họ tên: </b>@Html.DisplayFor(model => model.Ho) @Html.DisplayFor(model => model.Ten)</p>
+                        <p class="card-text"><b>Ngày sinh: </b>@Html.DisplayFor(model => model.NgaySinh)</p>
+                        <p class="card-text"><b>Số điện thoại: </b>@Html.DisplayFor(model => model.SDT)</p>
+                        @*<p class="card-text"><small class="text-muted">Hay bốc đồng</small></p>*@
+                        @if (Model != null)
+                        {
+                            @Html.ActionLink("Thay đổi thông tin cá nhân", "Edit", new { Controller = "NhanvienTest", Action = "Edit", id = Model.IDNV })
+                            <br />
+                            @Html.ActionLink("Thay đổi thông tin tài khoản", "Edit", new { Controller = "AccountsTest", Action = "Edit", id = Model.IDNV })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <img src="~/Content/1547431215529.jpg" />
+        <div class="text-center">
+            <p style="margin: 5px">Con đường thành công, không có dấu chân của kẻ lười biếng</p>
+            <small>Vì thằng lười biếng làm quái gì chịu đi mà có dấu chân</small>
+        </div>
+    </div>
+</div>

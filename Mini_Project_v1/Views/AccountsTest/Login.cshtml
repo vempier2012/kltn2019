@@ -1,0 +1,75 @@
+﻿@model Mini_Project_v1.Models.Account
+
+@{
+    Layout = null;
+    ViewBag.Title = "Đăng nhập";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="background-image:url(../../Content/Login-bg2.jpg);">
+    <div class="container body-content" style="margin-top: 20%">
+        <div class="d-flex justify-content-center">
+            <h1 style="color:aqua; font-family:'UTM Cafeta'">ỨNG DỤNG QUẢN LÝ NHÂN SỰ</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p style="color:aqua">Vui lòng đăng nhập để tiếp tục</p>
+        </div>
+        <div style="margin: auto; text-align:center">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group font-weight-bolder text-info" style="font-size:20px">
+                        @Html.Label("Tài khoản", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div style="margin: auto; width: 25%">
+                            @Html.EditorFor(model => model.Taikhoan, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Taikhoan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group font-weight-bolder text-info" style="font-size:20px">
+                        @Html.Label("Mật khẩu", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div style="margin: auto; width: 25%">
+                            @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { @class = "form-control", @type = "password"} })
+                            @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <p style="color: red">@ViewBag.Error</p>
+                        <p style="color: red">@ViewBag.RoleConfirm</p>
+                        <p style="color: red">@ViewBag.Failed</p>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10" style="margin:auto">
+                            <input type="submit" value="Đăng nhập" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <hr />
+        <footer class="fixed-bottom" style="margin: auto; color: white">
+            <p class="ml-lg-5">&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>
+
